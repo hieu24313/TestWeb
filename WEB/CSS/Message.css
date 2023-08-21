@@ -2,17 +2,23 @@ main.main {
     width: 100%;
 }
 
+main.main>div.content {
+    height: 99vh;
+}
+
 /* left */
 section.left {
     width: 30%;
-    height: 100%;
-    /* background-color: aqua; */
     border-right: 2px solid navy;
 }
 
 div.myName {
-    padding: 45px 20px;
+    padding: 36px 20px;
     /* height: 100px; */
+}
+
+div.myName div.arrow-left {
+    display: none;
 }
 
 div.myName h1 {
@@ -43,7 +49,7 @@ div.find>input:focus {
 div.friend {
     overflow: hidden;
     overflow-y: scroll;
-    height: 770px;
+    height: 700px;
 }
 
 ul.list-friend>li.item {
@@ -58,6 +64,10 @@ div.f-img {
 div.f-img>img {
     width: 100%;
     border-radius: 50%;
+}
+
+div.f-img .name {
+    display: none;
 }
 
 div.f-name {
@@ -77,6 +87,12 @@ span {
 /* right */
 section.right {
     width: 70%;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+span.s-name {
+    display: none;
 }
 
 div.mes-top {
@@ -109,10 +125,9 @@ div.icon>ul>li i {
 }
 
 div.mes-bottom {
-    position: fixed;
+
     bottom: 20px;
-    left: 37%;
-    right: 3%;
+    margin: 0 0 2% 3%;
     border: 1px solid black;
     border-radius: 20px;
 }

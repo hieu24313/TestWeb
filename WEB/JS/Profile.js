@@ -33,12 +33,30 @@ $(window).on("load", function () {
         })
     })
 });
-
+function click_heart(obj) {
+    let a = obj
+    let colora = getComputedStyle(a);
+    let thiscolor = colora.color;
+    if (thiscolor === "rgb(255, 0, 0)" || thiscolor === "red") {
+        a.style.color = "black";
+    }
+    else {
+        a.style.color = "red";
+        setTimeout(() => {
+            a.classList.add("animate__animated")
+            a.classList.add("animate__tada")
+        }, 100)
+        setTimeout(() => {
+            a.classList.remove("animate__animated")
+            a.classList.remove("animate__tada")
+        }, 1000)
+    }
+}
 function load_item() {
     let c = document.getElementById("items");
     c.innerHTML = "";
 
-    fetch(`/JSON/items.json`)
+    fetch(`JSON/items.json`)
         .then((res) => {
             return res.json();
         }).then((data) => {
@@ -50,8 +68,8 @@ function load_item() {
                         <img src="${i.img}" alt="">
                         <div class="bg-top ">
                             <div class="flex icon">
-                                <div class="icon-heart">
-                                    <i class="fa-solid fa-heart"></i>
+                                <div class="icon-heart wow">
+                                    <i class="fa-solid fa-heart" onclick="click_heart(this)"></i>
                                 </div>
                                 <div class="icon-share">
                                     <i class="fa-regular fa-paper-plane "></i>
@@ -62,40 +80,59 @@ function load_item() {
             }
         })
 }
+// click menu
+$(document).ready(()=>{
+    $(".tab-content>div:not(:first-child)").hide()
+    $(".tab a").click(function(){
+        setTimeout(()=>{
+            $(".tab>li").removeClass("actives")
+        $(this).parent().addClass("actives")
 
-function load_anh() {
-    // alert("hello")
-    let item = document.getElementById("item")
-    let like = document.getElementById("like")
-    let tag = document.getElementById("tag")
-    let ds = document.querySelectorAll(".list>li")
-    // console.log(ds)
-    for (let i = 0; i < ds.length; i++)
-        ds[i].onclick = function () {
-            if (ds[i] == ds[0]) {
-                ds[0].style.borderTop = "5px solid gray";
-                ds[1].style.borderTop = "none";
-                ds[2].style.borderTop = "none";
-                tag.style.display = "none"
-                like.style.display = "none"
-            }
-            if (ds[i] == ds[1]) {
-                ds[0].style.borderTop = "none";
-                ds[1].style.borderTop = "5px solid gray";
-                ds[2].style.borderTop = "none";
-                tag.style.display = "none"
-                like.style.display = "block"
-            }
-            if (ds[i] == ds[2]) {
-                ds[0].style.borderTop = "none";
-                ds[1].style.borderTop = "none";
-                ds[2].style.borderTop = "5px solid gray";
-                like.style.display = "none"
-                tag.style.display = "block"
+        
+        $(".tab-content>div").hide()
+        let h= $(this).attr("href");
+        $(h).show();
+        $(h).addClass("show");
+        },300)
+    })
+    
+})
 
-            }
-        }
-}
+
+
+// function load_anh() {
+//     // alert("hello")
+//     let item = document.getElementById("item")
+//     let like = document.getElementById("like")
+//     let tag = document.getElementById("tag")
+//     let ds = document.querySelectorAll(".list>li")
+//     // console.log(ds)
+//     for (let i = 0; i < ds.length; i++)
+//         ds[i].onclick = function () {
+//             if (ds[i] == ds[0]) {
+//                 ds[0].style.borderTop = "5px solid gray";
+//                 ds[1].style.borderTop = "none";
+//                 ds[2].style.borderTop = "none";
+//                 tag.style.display = "none"
+//                 like.style.display = "none"
+//             }
+//             if (ds[i] == ds[1]) {
+//                 ds[0].style.borderTop = "none";
+//                 ds[1].style.borderTop = "5px solid gray";
+//                 ds[2].style.borderTop = "none";
+//                 tag.style.display = "none"
+//                 like.style.display = "block"
+//             }
+//             if (ds[i] == ds[2]) {
+//                 ds[0].style.borderTop = "none";
+//                 ds[1].style.borderTop = "none";
+//                 ds[2].style.borderTop = "5px solid gray";
+//                 like.style.display = "none"
+//                 tag.style.display = "block"
+
+//             }
+//         }
+// }
 
 function follow(obj) {
     //alert("click")
@@ -117,7 +154,7 @@ function load_follow() {
     let c = document.getElementById("items");
     c.innerHTML = "";
 
-    fetch(`/JSON/friends.json`)
+    fetch(`JSON/friends.json`)
         .then((res) => {
             return res.json();
         }).then((data) => {
@@ -152,8 +189,8 @@ function check(obj) {
     let b = document.getElementById("unfollow")
     setTimeout(() => {
         b.style.display = "block"
-
     }, 200)
+
     let par = btn.parentNode
     let child = par.querySelector(".del")
 

@@ -1,10 +1,12 @@
 /* giữa */
 #m-center {
-    width: 75%;
+    width: 70%;
+    border-right: 1px solid navy
 }
 
 #m-center>div {
     margin: 0px auto;
+    width: 100%;
 }
 
 /* nút tìm kiếm */
@@ -27,175 +29,87 @@ input#ip-search:focus {
     outline: none;
 }
 
-/* trang nội dung chính */
-.h-content {
-    width: 100%;
-}
-
-.tab-story {
-    width: 95%;
-    margin: 10px auto;
-    padding: 10px;
+/* story */
+.my-stories {
     position: relative;
 }
 
+.my-stories>.add {
+    right: 5%;
+    top: 30%;
+}
 
-.tab-story ul.stories {
-    list-style-type: none;
-    align-items: stretch;
-    flex-direction: row;
-    height: 100%;
-    width: 100%;
+.wrapper {
+    width: 80%;
+    margin: 0px auto;
+    overflow: hidden;
     position: relative;
-    overflow-x: auto;
-    overflow-y: hidden;
-    transition: left 2s;
-    /*hiếu thêm*/
-    left: -4px;
-    /* scroll-behavior: auto; */
-    /* scroll-behavior: smooth; */
 }
 
-
-
-ul.stories::-webkit-scrollbar {
-    display: none;
-}
-
-.tab-story ul.stories li.story {
-    width: 100%;
-    height: 100%;
-    margin: 0 10px;
-
-}
-
-li.story a {
-    text-decoration: none;
-}
-
-.story-img {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    padding: 3px;
-    margin-bottom: 10px;
-    margin-left: 20px;
-    background: linear-gradient(gold, rgb(126, 17, 126), red);
-    position: relative;
-    transition: all 1s;
-}
-
-.story-img img {
-    width: 96%;
-    height: 96%;
-    border-radius: 50%;
-    border: 2px solid white;
-    object-fit: cover;
-
-}
-
-.story-name {
+.wrapper i {
+    background-color: #ffff;
+    top: 20%;
+    width: 30px;
+    height: 30px;
     text-align: center;
-    margin-bottom: 10px;
-}
-
-.btn {
     position: absolute;
     font-size: 30px;
-    border: none;
-    background: none;
+    z-index: 9;
+    border-radius: 50%;
+    border: 1px solid navy;
     cursor: pointer;
 }
 
-.left {
-    top: 40px;
+.wrapper i#left {
     left: 20px;
 }
 
-.right {
-    top: 40px;
+.wrapper i#right {
     right: 20px;
 }
 
-/* myProfile */
-#m-right {
-    position: fixed;
-    right: 2px;
-    width: 21%;
-    margin: 1% 0 0 15px;
-}
-
-.myProfile {
+.wrapper .carousel {
     width: 100%;
-    height: 100px;
-    margin-top: 10px;
-}
-
-.myImg {
-    width: 25%;
-    border-radius: 50%;
-    padding-right: 20px;
-}
-
-.myImg img {
-    width: 100%;
-    border-radius: 50%;
-}
-
-.myName {
-    padding-top: 20px;
-}
-
-.myName h3 {
-    font-size: 35px;
-}
-
-.myName a {
-    text-decoration: none;
-}
-
-.myFriend {
-    background-color: blue;
-}
-
-/* * thông báo */
-
-.note {
-    position: absolute;
-    background-color: lightblue;
-    width: 0px;
-    top: 0px;
-    right: 0px;
-    left: 100%;
-    bottom: 0px;
-    transition: width 2s;
-    opacity: 0;
-    z-index: -111;
+    padding: 10px;
     overflow: hidden;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+
 }
 
-.notes:hover .note {
-    opacity: 1;
-    width: 400px;
+::-webkit-scrollbar {
+    display: none;
 }
 
-.notif li {
+.carousel li {
+    /* height: 200px; */
+    object-fit: cover;
+    margin: 0 10px;
     text-align: center;
-    /* width:1rem; */
-    padding: 0;
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-    border: 2px;
+}
+
+.carousel li>div:first-child {
+    background: linear-gradient(blue, red, pink, gold);
+    border-radius: 50%;
+    width: 85px;
+    height: 85px;
+    padding: 3px;
+    margin: 0px auto;
+}
+
+.carousel li img {
+    width: 100%;
+    border-radius: 50%;
 }
 
 /* bài viết */
 .h-center {
-    width: 100%;
-    /* background-color: antiquewhite; */
+    width: 80%;
+    margin: 0px auto;
 }
 
 .list-news {
-    width: 70%;
+    width: 75%;
     margin: 20px auto;
     padding: 20px;
     background-color: white;
@@ -206,6 +120,7 @@ li.story a {
     transition: opacity 2s;
 
 }
+
 
 /* nút restore*/
 .restore {
@@ -229,8 +144,23 @@ li.story a {
 
 }
 
+.n-name>div {
+    margin-right: 20px;
+}
+
 .n-name .myImg {
-    width: 10%;
+    width: 15%;
+}
+
+.n-name .myImg img {
+    width: 100%;
+    border-radius: 50%;
+    padding: 10px;
+}
+
+.n-name .myName h3 {
+    font-size: 30px;
+    padding: 50% 0px;
 }
 
 .close {
@@ -256,14 +186,6 @@ li.story a {
     margin-right: 20px;
 }
 
-/*Hiếu Thêm*/
-
-/*thêm*/
-.tab-story {
-    overflow: hidden;
-}
-
-/*thêm*/
 .story-img img:hover {
     transform: scale(1.2, 1.2);
 }
@@ -273,17 +195,13 @@ li.story a {
 }
 
 .friendss {
-    margin-top: 30%;
+    margin-top: 10%;
     overflow-x: hidden;
     overflow-y: auto;
     height: 650px;
+    position: relative;
 }
 
-/* 
-section.friend {
-    width: 20%;
-    margin-top: 20%;
-} */
 
 .friends {
     width: auto;
@@ -305,10 +223,16 @@ div.friend-img {
     position: relative;
 }
 
+.ative {
+    position: absolute;
+    right: 5%;
+    top: 70%;
+    ;
+}
+
 div.friend-img>img {
-    width: 100%;
-    width: 45px;
-    height: 45px;
+    width: 75px;
+    height: 75px;
     border-radius: 50%;
     margin-bottom: 10px;
     background: linear-gradient(gold, rgb(126, 17, 126), red);
@@ -322,7 +246,12 @@ div.friend-img>img:hover {
 
 div.friend-name {
     text-align: center;
-    padding: 13px;
+    padding: 7% 0 0 3%;
+}
+
+div.friend-name span {
+    font-size: 20px;
+    margin-top: 20px;
 }
 
 div.online {
@@ -353,11 +282,6 @@ div.online>div>div>i {
 }
 
 div.online>div input {
-    /* border: 2px solid black;
-    width: 40%;
-    border: 1px solid black;
-    border-radius: 30px;
-    margin-left: 25%; */
     background: none;
     border: none;
 }
@@ -368,6 +292,64 @@ div.online>div input:focus {
 
 div.n-heart {
     cursor: pointer;
+    position: relative;
+}
+
+div.n-heart>div {
+    width: 6.5%;
+    margin: 0 10px;
+}
+
+div.n-heart>div>img {
+    width: 100%;
+}
+
+/* mini chat */
+.mini-chat {
+    position: fixed;
+    background-color: #ffff;
+    width: 20%;
+    height: 50%;
+    bottom: 0;
+    right: 5%;
+    padding: 10px;
+    border-radius: 20px 20px 0 0;
+    flex-direction: column;
+    justify-content: space-between;
+    /* display: none; */
+    z-index: 99;
+}
+
+.mini-chat>div>div:first-child {
+    width: 80%;
+}
+
+.mini-chat .icon {
+    font-size: 30px;
+    margin-left: auto;
+    padding: 10px 0;
+}
+
+.mini-chat .icon i {
+    cursor: pointer;
+}
+
+.mini-chat div.chat {
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 20px;
+    border: 1px solid navy;
+}
+
+div.chat input {
+    width: 90%;
+    border: none;
+    font-size: 15px;
+    background: none;
+}
+
+div.chat input:focus {
+    outline: none;
 }
 
 /* nút xem thêm */
@@ -376,7 +358,7 @@ div.n-heart {
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: 25px;
-    padding: 20px 0px;
+    padding: 10px 0px;
 }
 
 .add {
@@ -389,19 +371,38 @@ button {
     border: none;
     cursor: pointer;
     font-size: 17px;
+    color: gray;
 }
 
 .btn-less {
     display: none;
 }
 
-/* mini chat */
-/* .mini-chat{
-    width: 500px;
-    height: 400px;
-    background-color: aquamarine;
+.sub-heart {
+    display: none;
     position: absolute;
     bottom: 50px;
-    right: 50px;
+    background-color: aliceblue;
+    border-radius: 35px;
     z-index: 9999;
-} */
+    width: 250px !important;
+}
+
+div.heart>i:hover .sub-heart {
+    display: block;
+
+}
+
+.sub-heart ul {
+    justify-content: space-between;
+}
+
+.sub-heart ul li {
+    width: 40%;
+    margin: 0 10px;
+}
+
+.sub-heart ul li>img {
+    width: 100%;
+    padding: 5px;
+}

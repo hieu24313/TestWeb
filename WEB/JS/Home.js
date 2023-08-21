@@ -1,76 +1,19 @@
-function changeLeft() {
-    let a = document.getElementById("stories");
-    let d = 50;
-    let computedStyle = window.getComputedStyle(a);
-    let leftValue = computedStyle.getPropertyValue("left");
-    let rightValue = computedStyle.getPropertyValue("right");
+function click_story() {
+    const carousel = document.querySelector(".carousel")
+    firstImg = carousel.querySelectorAll("li")[0]
+    arrowIcons = document.querySelectorAll(".wrapper i")
+    let firstImgWidth = 300
+    arrowIcons.forEach(icon => {
+        icon.addEventListener("click", () => {
+            // console.log(firstImgWidth)
+            if (icon.id === "left") {
+                carousel.scrollLeft -= firstImgWidth
+            }
+            if (icon.id === "right") { carousel.scrollLeft += firstImgWidth }
+        })
 
-    let left1 = parseInt(leftValue, 10);
-    let right1 = parseInt(rightValue, 10);
-    if (right1 >= 0) {
-
-        let newleft = left1 + d;
-        a.style.left = newleft + "px";
-    } else {
-        let a = document.getElementById("stories");
-        a.setAttribute("justify-content", "flex-start");
-    }
-
-};
-
-// function changeLeft(){
-//     let a = document.getElementById("stories");
-//     let scroll = a.scrollLeft;
-//     a.scrollLeft = scroll - 100;  
-//     console.log(scroll);
-
-
-// }
-
-// function changeRight(){
-//     let a = document.getElementById("stories");
-//     let scroll = a.scrollLeft;
-//     a.scrollLeft = scroll + 100;  
-//     console.log(scroll);
-
-// }
-
-// const scrollableContent = document.getElementById("tab-story");
-// const scrollContent = document.getElementById("stories");
-// let scrollLeftValue = 0;
-
-// function changeLeft() {
-//     // if (scrollLeftValue >= 0 && scrollLeftValue < scrollContent.scrollWidth - scrollableContent.clientWidth) {
-//       scrollLeftValue += 50; // Thay đổi giá trị cuộn ngang
-//       scrollContent.style.transform = `translateX(-${scrollLeftValue}px)`; // Áp dụng giá trị cuộn ngang bằng transform
-//     // }
-//   }
-
-//   function changeRight() {
-//     if (scrollLeftValue > 0) {
-//       scrollLeftValue -= 50; // Thay đổi giá trị cuộn ngang
-//       scrollContent.style.transform = `translateX(-${scrollLeftValue}px)`; // Áp dụng giá trị cuộn ngang bằng transform
-//     }
-//   }
-
-function changeRight() {
-    let a = document.getElementById("stories");
-    let d = 50;
-    let computedStyle = window.getComputedStyle(a);
-    let leftValue = computedStyle.getPropertyValue("left");
-    let rightValue = computedStyle.getPropertyValue("right");
-
-    let left1 = parseInt(leftValue, 10);
-    let right1 = parseInt(rightValue, 10);
-    if (right1 <= 30) {
-        let newleft = left1 - d;
-        a.style.left = newleft + "px";
-    }
+    });
 }
-
-
-
-
 
 /*Hiếu thêm sau*/
 
@@ -84,22 +27,119 @@ function load_friends() {
                 let a = document.getElementById("frie");
                 a.innerHTML +=
                     `<div class="friend">
-            <a href="#">
-            <div class="friend-img">
-                <img src="${i.img}" id="img-fr" alt="ảnh"> 
-            </div>
-        
-            <div class="friend-name">
-                <span id="name-fr">${i.name}</span>
-            </div>
-            </a>
-            </div>`
+                        <a href="#" class="list" onclick="mini_chat(this)">
+                            <div class="friend-img">
+                                <img src="${i.img}" class="img-fr" alt="ảnh"> 
+                                <div class="ative">
+                                    <i class="fa-solid fa-circle" style="color: #1ac417;"></i>            
+                                </div>
+                            </div>
+                        
+                            <div class="friend-name">
+                                <span class="name-fr">${i.name}</span>
+                            </div>
+                        </a>
+                    </div>`
             }
         });
+
+
 
 };
 
 
+function load_story(){
+
+        fetch(`JSON/stories.json`)
+            .then((res) => {
+                return res.json();
+            }).then((data) => {
+                for (let i of data) {
+                    let a = document.getElementById("stories_main");
+                    a.innerHTML +=
+                        `<li>
+                        <div><img src="${i.image}" alt=""></div>
+                        <div>
+                            <h2>${i.name}</h2>
+                        </div>
+                    </li>`
+                }
+            });
+    
+    
+    
+    };
+
+function mini_chat(obj) {
+    let a = obj
+    let pic = a
+    let form = document.getElementById("form");
+    let img = pic.querySelector(".friend-img img")
+    let name = pic.querySelector(".friend-name span")
+    console.info(name.innerText)
+
+    form.innerHTML = `
+    <div class="mini-chat flex" id="mini-chat">
+                <div class="flex">
+                    <div class="flex">
+                        <div class="friend-img">
+                            <img src="${img.src}" id="mini-img" alt="ảnh">
+                        </div>
+                        <div class="friend-name">
+                            <span id="mini-name">${name.innerText}</span>
+                        </div>
+                    </div>
+                    <div class="icon">
+                        <i onclick="minuschat()" class="fa-solid fa-minus" id="minus"></i>
+                        <i onclick="removechat()" class="fa-solid fa-xmark" id="xmark"></i>
+                    </div>
+                </div>
+                <div>
+
+                </div>
+                <div class="chat">
+                    <i class="fa-regular fa-message"></i>
+                    <input type="text" placeholder="Tin nhắn......">
+                </div>
+            </div>
+    `
+
+}
+
+
+function removechat() {
+    let form = document.getElementById("form");
+    let chat = form.querySelector("#mini-chat");
+    chat.remove();
+}
+
+function minuschat() {
+    let form = document.getElementById("form");
+    let chat = form.querySelector("#mini-chat");
+    if (chat.style.height === "8%") {
+        chat.style.height = "50%";
+    }
+    else {
+        chat.style.height = "8%";
+    }
+
+
+}
+// tìm kiếm trang chủ
+function search(obj) {
+    // let s = document.getElementById("ip-search").value
+    let s = obj.value
+    console.log(s)
+    let n = document.querySelectorAll(".myName > a >h3")
+    for (let i = 0; i < n.length; i++) {
+        if (n[i].textContent.indexOf(s) >= 0) {
+            n[i].style.color = "gold"
+        }
+
+    }
+}
+
+// tìm kiếm bạn
 function find_friends(obj) {
     let b = document.getElementById("frie");
     b.innerHTML = "";
@@ -131,18 +171,55 @@ function find_friends(obj) {
         });
 
 };
-
 function heart(obj) {
+
     let a = obj;
+    let b = a.parentNode.parentNode
+    // let img = document.querySelector(".heart img")
+    // console.log(img.src)
+    let c = b.querySelector(".sub-heart")
+
     let colora = getComputedStyle(a);
     let thiscolor = colora.color;
-
     if (thiscolor === "rgb(255, 0, 0)" || thiscolor === "red") {
-        a.style.color = "navy";
+        c.style.display = "none"
+
+
     } else {
-        a.style.color = "red";
+        c.style.display = "block"
     }
+    let icon = b.querySelectorAll(".sub-heart ul li img")
+    //console.log(icon.length)
+    for (let i = 0; i < icon.length; i++) {
+        icon[i].onclick = function () {
+
+            if (icon[i] !== icon[3]) {
+                a.src = icon[i].src
+                setTimeout(() => {
+                    a.classList.add("animate__animated")
+                    a.classList.add("animate__tada")
+                }, 100)
+                setTimeout(() => {
+                    a.classList.remove("animate__animated")
+                    a.classList.remove("animate__tada")
+                }, 1000)
+
+
+            }
+            else {
+                a.src = "IMG/home/black-heart.png"
+                //console.log(a.src)
+            }
+            setTimeout(() => {
+                c.style.display = "none"
+            }, 200)
+
+        }
+    }
+
+
 }
+
 
 function load_news() {
     let c = document.getElementById("h-load-news");
@@ -162,48 +239,58 @@ function load_news() {
                             <h1>Bài viết đã được ẩn</h1>
                             <button class="btn-restore" onclick="restore_news(this)">Hoàn Tác</button>
                         </div>
-            <div class="list-news" id="list-news${count}">
-                <div class="n-name flex">
-                    <div class="myImg">
-                        <a href="index3.html">
-                            <img src="${i.image}" alt="">
-                        </a>
+            <div class="list-news wow animate__animated animate__zoomIn" id="list-news${count}">
+                    <div class="n-name flex">
+                        <div class="myImg">
+                            <a href="index3.html">
+                                <img src="${i.image}" alt="">
+                            </a>
+                        </div>
+                        <div class="myName">
+                            <a href="index3.html">
+                                <h3>${i.name}</h3>
+                            </a>
+                        </div>
+                        <div class="close">
+                            <i class="fa-solid fa-xmark" onclick="hide_news(this)"></i>
+                        </div>
                     </div>
-                    <div class="myName">
-                        <a href="index3.html">
-                            <h3>${i.name}</h3>
-                        </a>
+                    <div class="n-infor">
+                        <div class="box">
+                            <p>${i.content}</p>
+                        </div>
+                        <button class="btn-more" onclick=click_more(this)>Xem thêm</button>
+                        <button class="btn-less" onclick=click_less(this)>Rút gọn</button>
+                        <div class="n-img">
+                            <img src="${i.content_img}" alt="">
+                        </div>
                     </div>
-                    <div class="close">
-                        <i class="fa-solid fa-xmark" onclick="hide_news(this)"></i>
+                    <div class="n-heart flex">
+                        <div class="heart wow">
+                            <img src="IMG/home/black-heart.png" alt="" onclick="heart(this)">
+                        </div>
+                        <div class="comment">
+                            <i class="fa-regular fa-comment" style="color:black"></i>
+                        </div>
+                        <div class="share">
+                            <i class="fa-regular fa-paper-plane" style="color:black"></i>
+                        </div>
+                        <div class="sub-heart">
+                            <ul class="flex">
+                                <li class="love-heart"><img src="IMG/home/heart.png" alt=""></li>
+                                <li class="smile"><img src="IMG/home/smile.png" alt=""></li>
+                                <li class="cry"><img src="IMG/home/cry.png" alt=""></li>
+                                <li class="delete"><img src="IMG/home/delete.png" alt=""></li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div class="n-infor">
-                    <div class="box">
-                        <p>${i.content} </p>
-                    </div>
-                    <button class="btn-more" onclick = click_more(this)>Xem thêm</button>
-                    <button class="btn-less" onclick = click_less(this)>Rút gọn</button>
-                    <div class="n-img">
-                        <img src="${i.content_img}" alt="">
-                    </div> 
-                </div>
-                <div class="n-heart flex">
-                    <div class="heart">
-                        <i class="fa-regular fa-heart" onclick="heart(this)"></i>
-                    </div>
-                    <div class="comment">
-                        <i class="fa-regular fa-comment"></i>
-                    </div>
-                    <div class="share">
-                        <i class="fa-regular fa-paper-plane"></i>
-                    </div>
-                </div>
             </div>`;
                 count += 1;
             }
         })
 }
+
+
 
 //ẩn bài viết
 
@@ -288,7 +375,7 @@ $(window).on("load", () => {
     $(document).ready(function () {
         $("#go").hide()
         $(window).scroll(() => {
-            if ($(this).scrollTop() >= 300) {
+            if ($(this).scrollTop() >= 500) {
                 $("#go").show()
             }
             else {
@@ -310,14 +397,11 @@ function load_btn() {
     setTimeout(() => {
         let box = document.getElementsByClassName("box");
         for (i of box) {
-            // console.log(box);
             let height = parseFloat(i.offsetHeight);
-            // console.log(height);
             if (height <= 100) {
                 let m = i.parentNode;
                 let more = m.getElementsByTagName("button");
                 for (j of more) {
-                    // console.log(more)
                     j.style.display = "none";
                 }
 
@@ -330,12 +414,9 @@ function load_btn() {
 //nút xem thêm 
 function click_more(obj) {
     let btn = obj
-    //alert("hello")
     let par = btn.parentNode
-    //console.log(par)
     let child = par.querySelector(".box")
     let btn_less = par.querySelector(".btn-less")
-    // console.log(child)
     child.style.maxHeight = "none"
     btn.style.display = "none"
     btn_less.style.display = "block"
@@ -352,6 +433,10 @@ function click_less(obj) {
     btn.style.display = "none"
     btn_more.style.display = "block"
 }
+
+
+
+
 
 
 

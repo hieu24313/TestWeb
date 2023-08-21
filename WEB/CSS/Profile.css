@@ -27,12 +27,12 @@
 .img-Profile div.name {
     width: 75%;
     margin: 0px auto;
-    justify-content: space-around;
+    justify-content: space-between;
     /* background-color: azure; */
 }
 
 div.avatar {
-    width: 15%;
+    width: 25%;
     border-radius: 50%;
     /* border: 3px solid white; */
     /* margin-right: 20px; */
@@ -48,17 +48,17 @@ div.avatar img {
 }
 
 div.fname {
-    width: 20%;
+    width: 30%;
 
 }
 
 .img-Profile h1 {
     font-size: 2.5rem;
-    padding-bottom: 1rem;
 }
 
 .img-Profile span {
     font-size: 1.5rem;
+    padding-left: 10%;
 }
 
 div.infor {
@@ -104,17 +104,7 @@ div.infor div.setting {
 }
 
 .menu-top ul li {
-
-    padding: 10px;
-    display: block;
-}
-
-.menu-top a {
-    text-decoration: none;
-}
-
-.menu-top ul li:first-child {
-    border-top: 5px solid gray;
+    line-height: 2.5;
 }
 
 .menu-top {
@@ -122,6 +112,7 @@ div.infor div.setting {
 }
 
 .items {
+    flex-wrap: wrap;
     position: absolute;
     top: 110%;
     left: 0;
@@ -129,12 +120,10 @@ div.infor div.setting {
     flex-wrap: wrap;
     background-color: #ffff;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 0px 0 rgba(0, 0, 0, 0.19);
-
 }
 
 .items>i {
     font-size: 100px;
-
     margin: 10px auto;
     margin-top: 100px;
 }
@@ -155,7 +144,7 @@ div.infor div.setting {
 
 .text {
     text-align: center;
-    height: 1000px;
+    height: 500px;
 
 }
 
@@ -182,7 +171,6 @@ div.infor div.setting {
 .bg-top div i {
     color: black;
     font-size: 50px;
-    /* padding: 5px; */
     cursor: pointer;
     margin-top: 40%;
 }
@@ -200,6 +188,10 @@ div.infor div.setting {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 
+}
+
+.actives {
+    border-top: 3px solid saddlebrown !important;
 }
 
 .sub .avatar {
@@ -291,7 +283,7 @@ section.unfollow {
     right: 0;
     bottom: 0;
     z-index: 9999;
-    background-color: rgba(1, 17, 21, 0.5);
+    /* background-color: rgba(1, 17, 21, 0.5); */
     display: none;
 }
 

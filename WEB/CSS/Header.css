@@ -12,7 +12,15 @@ ul li {
 a {
     text-decoration: none;
 }
+.change{
+    color: red;
+}
+.active{
+    /* background-color: #e0f0f5; */
+    border-bottom:2px solid #248299;
+    margin: 0 30px;
 
+}
 /* go to top */
 #go {
     width: 50px;
@@ -56,7 +64,7 @@ body {
     height: 100%;
     position: fixed;
     top: 0;
-    z-index: 9999;
+    z-index: 99;
     border-right: 1px solid navy;
 }
 
@@ -110,19 +118,126 @@ nav.menu .name {
 }
 
 .name .logo {
-    padding-top: 30%;
+    padding-top: 50%;
+    width: 95%;
 }
 
 .name img {
-    width: 100%;
+    width: 80%;
 }
 
 /* main */
 .h_main {
     width: 100%;
-    margin-left: 18%;
+    margin-left: 17.5%;
 }
 
 .main {
     margin-left: 7.3% !important;
+}
+
+/* điện thoại */
+.res-menu {
+    display: none;
+}
+
+.res-menu>ul {
+    width: 100%;
+}
+
+
+.res-menu>ul>li:first-child {
+    width: 25%;
+    margin: 10px 10px 0 0;
+    padding: 0;
+}
+
+.res-menu>ul>li {
+    width: 15%;
+    margin-top: 7%;
+    text-align: center;
+
+}
+
+.res-menu i {
+    font-size: 25px;
+}
+
+.logo {
+    width: 100%;
+}
+
+
+
+/* phần right của trang home */
+section#m-right {
+    width: 23%;
+    position: fixed;
+    right: 20px;
+    top: 10%;
+}
+
+#m-right>div.myProfile {
+    width: 100%;
+    margin-top: 0%;
+}
+
+div.myProfile div.myImg {
+    width: 25%;
+    margin-right: 5%;
+}
+
+div.myImg img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+div.myName div.fname {
+    /* padding: 20px 0px; */
+    font-size: 35px;
+
+}
+
+div.myName div.lname {
+    font-size: 20px;
+}
+
+/* thông báo */
+/* .note {
+    position: fixed;
+    top: 0;
+    left: 18%;
+    right: 100%;
+    bottom: 0;
+    background-color: aliceblue;
+    z-index: 999;
+} */
+#thongBao {
+    top: 0;
+    bottom: 0;
+    left: -18%;
+    right: 100%;
+    transition: transform 0.3s ease-in-out;
+    background-color: #ffff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 0 10px 10px 0;
+    position: fixed;
+ }
+ #thongBao>li:first-child{
+    margin: 0;
+    border-bottom: 1px solid navy;
+    text-align: center;
+}
+#thongBao .notif{
+    height:700px;
+    overflow-y: scroll;
+    overflow-x: auto;
+
+ }
+.notif li {
+    /* text-align: center; */
+    padding: 0 0 0 30px;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    border: 2px;
 }
