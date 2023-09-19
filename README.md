@@ -1,1 +1,1 @@
-# Websute static
+# Website static
